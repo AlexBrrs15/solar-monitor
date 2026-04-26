@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid
+} from 'recharts';
 
 function App() {
-  const [energia, setEnergia] = useState(0);
-  const [status, setStatus] = useState('');
+  const [data, setData]=useState([]);
 
   const fetchData = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/status');
+      const res = await axios.get('https://studious-enigma-v9p4v97577p2wqp-3000.app.github.dev/status');
       setEnergia(res.data.energia.toFixed(2));
       setStatus(res.data.status);
     } catch (err) {
